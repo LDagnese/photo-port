@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Nav from "..";
 
@@ -20,19 +20,19 @@ describe("Nav component", () => {
 describe("emoji is visible", () => {
   it("inserts emoji into the h2", () => {
     // Arrange
-    const { getByLabelText } = render(<Nav />);
+    render(<Nav />);
 
     // Assert
-    expect(getByLabelText("camera")).toHaveTextContent("📸");
+    expect(screen.getByLabelText("camera")).toHaveTextContent("📸");
   });
 });
 
 describe("links are visible", () => {
   it("inserts text into the links", () => {
     // Arrange
-    const { getByTestId } = render(<Nav />);
+    render(<Nav />);
     // Assert
-    expect(getByTestId("link")).toHaveTextContent("Oh Snap!");
-    expect(getByTestId("about")).toHaveTextContent("About me");
+    expect(screen.getByTestId("link")).toHaveTextContent("Oh Snap!");
+    expect(screen.getByTestId("about")).toHaveTextContent("About me");
   });
 });
